@@ -1,0 +1,22 @@
+#include "DataModel.h"
+
+DataModel::DataModel(QObject *parent) : QObject(parent)
+{
+    
+}
+
+bool DataModel::loadFromCSV(const QString &filemane)
+{
+    QFile file( filename );
+    if ( !file.exists() || !file.open ( QIODevice::ReadOnly ) ) {
+        qDebug() << "TableModel::loadFromCSV: file" << filename
+                 << "does not exist or could not be opened";
+        return false;
+    }
+    
+    QStringList lines;
+    while ( !file.atEnd() ) {
+        lines.append( QString::fromUtf8( file.readLine() ) );
+    }
+    
+}
